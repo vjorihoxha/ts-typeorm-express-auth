@@ -1,0 +1,53 @@
+{
+  "name": "crypto-data-node",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "debug=* NODE_PATH=./src ts-node-dev --respawn ./src/app.ts",
+    "start": "node ./src/app.ts",
+    "typeorm": "node --loader ts-node/esm ./node_modules/typeorm/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjorihoxha/crypto-data-node.git"
+  },
+  "keywords": [
+    "crypto",
+    "data",
+    "public",
+    "api"
+  ],
+  "author": "Vjori Hoxha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vjorihoxha/crypto-data-node/issues"
+  },
+  "homepage": "https://github.com/vjorihoxha/crypto-data-node#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.41",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/helmet": "4.0.0",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^17.0.13",
+    "@types/validator": "^13.7.1",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "4.5.5"
+  }
+}
