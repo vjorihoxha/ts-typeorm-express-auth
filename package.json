@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "debug=* NODE_PATH=./src ts-node-dev --respawn ./src/app.ts",
-    "start": "node ./src/app.ts",
+    "dev": "debug=* NODE_PATH=./src ts-node-dev --respawn src/index.ts",
+    "start": "node src/index.ts",
     "typeorm": "node --loader ts-node/esm ./node_modules/typeorm/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
