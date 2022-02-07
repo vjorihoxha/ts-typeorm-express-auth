@@ -4,6 +4,12 @@ import { getRepository } from 'typeorm';
 import { User } from 'typeorm/entities/User';
 import { CustomError } from 'utils/response/custom-error/CustomError';
 
+/**
+ * Updates the user's name.
+ * @param req
+ * @param res
+ * @param next
+ */
 export const edit = async (req: Request, res: Response, next: NextFunction) => {
 	const id = req.params.id;
 	const { name } = req.body;

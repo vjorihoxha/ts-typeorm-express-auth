@@ -4,6 +4,12 @@ import { getRepository } from 'typeorm';
 import { User } from 'typeorm/entities/User';
 import { CustomError } from 'utils/response/custom-error/CustomError';
 
+/**
+ * Will soft delete the user based on the uuid.
+ * @param req
+ * @param res
+ * @param next
+ */
 export const destroy = async (
 	req: Request,
 	res: Response,

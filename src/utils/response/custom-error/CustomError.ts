@@ -1,5 +1,8 @@
 import { ErrorType, ErrorValidation, ErrorResponse } from './types';
 
+/**
+ * The frontend will have an uniform error response.
+ */
 export class CustomError extends Error {
 	private readonly httpStatusCode: number;
 	private readonly errorType: ErrorType;

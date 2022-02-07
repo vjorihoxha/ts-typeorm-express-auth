@@ -4,6 +4,12 @@ import { getRepository } from 'typeorm';
 import { User } from 'typeorm/entities/User';
 import { CustomError } from 'utils/response/custom-error/CustomError';
 
+/**
+ * Changes user password
+ * @param req
+ * @param res
+ * @param next
+ */
 export const changePassword = async (
 	req: Request,
 	res: Response,
@@ -14,7 +20,13 @@ export const changePassword = async (
 
 	const userRepository = getRepository(User);
 	try {
-		const user = await userRepository.findOne({ where: { id } });
+		//Using QueryBuilder in order to add the hidden column which is password
+		const user = await userRepository
+			.createQueryBuilder()
+			.select()
+			.addSelect(['User.password'])
+			.where('id = :id', { id })
+			.getOne();
 
 		if (!user) {
 			const customError = new CustomError(404, 'General', 'Not Found', [

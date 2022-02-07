@@ -4,6 +4,12 @@ import { getRepository } from 'typeorm';
 import { User } from 'typeorm/entities/User';
 import { CustomError } from 'utils/response/custom-error/CustomError';
 
+/**
+ * Return one user based on the uuid provided
+ * @param req
+ * @param res
+ * @param next
+ */
 export const show = async (req: Request, res: Response, next: NextFunction) => {
 	const id = req.params.id;
 
