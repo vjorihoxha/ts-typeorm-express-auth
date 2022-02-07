@@ -1,1 +1,1 @@
-# crypto-data-node
+# Simple API with JWT
