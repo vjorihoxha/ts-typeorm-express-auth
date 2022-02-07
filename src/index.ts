@@ -1,13 +1,18 @@
 import 'reflect-metadata';
-import express from 'express';
+import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
+
 import cors from 'cors';
+import express from 'express';
 import helmet from 'helmet';
+import morgan from 'morgan';
+import multer from 'multer';
+
 import './utils/response/customSuccess';
 import { errorHandler } from './middlewares/errorHandler';
-import { dbCreateConnection } from './typeorm/dbCreateConnection';
-import 'dotenv/config';
 import routes from './routes';
-import multer from 'multer';
+import { dbCreateConnection } from './typeorm/dbCreateConnection';
 
 // create and setup express app and its middlewares
 const app = express();
@@ -17,6 +22,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(upload.array());
 app.use(helmet());
+
+try {
+	const accessLogStream = fs.createWriteStream(
+		path.join(__dirname, '../log/access.log'),
+		{
+			flags: 'a',
+		},
+	);
+	app.use(morgan('combined', { stream: accessLogStream }));
+} catch (err) {
+	console.log(err);
+}
+app.use(morgan('combined'));
+
 app.use('/', routes);
 app.use(errorHandler);
 
