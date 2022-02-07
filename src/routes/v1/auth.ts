@@ -1,11 +1,14 @@
 import { Router } from 'express';
 
-import { register } from 'controllers/auth';
+import {changePassword, login, register} from 'controllers/auth';
 
-import {validatorRegister} from "middlewares/validation/auth";
+import {validatorChangePassword, validatorLogin, validatorRegister} from "middlewares/validation/auth";
+import {checkJwt} from "middlewares/checkJwt";
 
 const router = Router();
 
-router.post('/register', [validatorRegister] , register);
+router.post('/login', [validatorLogin], login);
+router.post('/register', [validatorRegister], register);
+router.post('/change-password', [checkJwt, validatorChangePassword], changePassword);
 
 export default router;

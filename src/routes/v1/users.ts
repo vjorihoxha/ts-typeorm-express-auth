@@ -4,12 +4,12 @@ import { list, show, edit, destroy } from 'controllers/users';
 
 const router = Router();
 
-router.get('/', [], list);
+router.get('/', list);
 
-router.get('/:id([0-9]+)', [], show);
+router.get('/:id', show);
 
-router.patch('/:id([0-9]+)', [], edit);
+router.patch('/:id', edit);
 
-router.delete('/:id([0-9]+)', [], destroy);
+router.delete('/:id', destroy);
 
 export default router;
