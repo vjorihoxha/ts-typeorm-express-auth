@@ -6,7 +6,7 @@ module.exports = {
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_DATABASE,
 	synchronize: false,
-	logging: true,
+	logging: false,
 	entities: ['src/typeorm/entities/*.ts'],
 	migrations: ['src/typeorm/migrations/*.ts'],
 	cli: {
