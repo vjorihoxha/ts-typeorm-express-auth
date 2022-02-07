@@ -1,14 +1,13 @@
-import "reflect-metadata";
-import express from "express";
+import 'reflect-metadata';
+import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import './utils/response/customSuccess';
-import { errorHandler } from "./middlewares/errorHandler";
+import { errorHandler } from './middlewares/errorHandler';
 import { dbCreateConnection } from './typeorm/dbCreateConnection';
 import 'dotenv/config';
 import routes from './routes';
 import multer from 'multer';
-
 
 // create and setup express app and its middlewares
 const app = express();
@@ -24,9 +23,9 @@ app.use(errorHandler);
 const port = process.env.SERVER_PORT || 8080;
 // start express server
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+	console.log(`Server running on port ${port}`);
 });
 
 (async () => {
-    await dbCreateConnection();
+	await dbCreateConnection();
 })();

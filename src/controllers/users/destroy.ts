@@ -4,23 +4,33 @@ import { getRepository } from 'typeorm';
 import { User } from 'typeorm/entities/User';
 import { CustomError } from 'utils/response/custom-error/CustomError';
 
-export const destroy = async (req: Request, res: Response, next: NextFunction) => {
-  const id = req.params.id;
+export const destroy = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	const id = req.params.id;
 
-  const userRepository = getRepository(User);
-  try {
-    const user = await userRepository.findOne({ where: { id } });
+	const userRepository = getRepository(User);
+	try {
+		const user = await userRepository.findOne({ where: { id } });
 
-    if (!user) {
-      const customError = new CustomError(404, 'General', 'Not Found', [`User with id:${id} doesn't exists.`]);
-      return next(customError);
-    }
+		if (!user) {
+			const customError = new CustomError(404, 'General', 'Not Found', [
+				`User with id:${id} doesn't exists.`,
+			]);
+			return next(customError);
+		}
 
-    await userRepository.softDelete(id);
+		await userRepository.softDelete(id);
 
-    res.customSuccess(200, 'User successfully deleted.', { id: user.id, name: user.name, email: user.email });
-  } catch (err) {
-    const customError = new CustomError(400, 'Raw', 'Error', null, err);
-    return next(customError);
-  }
+		res.customSuccess(200, 'User successfully deleted.', {
+			id: user.id,
+			name: user.name,
+			email: user.email,
+		});
+	} catch (err) {
+		const customError = new CustomError(400, 'Raw', 'Error', null, err);
+		return next(customError);
+	}
 };
