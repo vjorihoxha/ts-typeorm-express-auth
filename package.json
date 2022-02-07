@@ -4,6 +4,7 @@
 	"description": "TypeScript, Express, JWT, TypeORM",
 	"scripts": {
 		"dev": "debug=* NODE_PATH=./src ts-node-dev --respawn src/index.ts",
+		"build": "rimraf dist && tsc",
 		"start": "node src/index.ts",
 		"typeorm": "node --loader ts-node/esm ./node_modules/typeorm/cli.js",
 		"prepare": "husky install",
